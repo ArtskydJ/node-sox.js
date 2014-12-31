@@ -11,14 +11,12 @@ examples
 Simple transcode:
 ```js
 var sox = require('sox')
-
 sox([ 'song.wav', 'song.flac' ])
 ```
 
 Lower volume:
 ```js
 var sox = require('sox')
-
 sox([
 	{ volume: 0.8 }, //options for the file go before it
 	// ↓
@@ -33,7 +31,6 @@ sox([
 Transcode with options and effects:
 ```js
 var sox = require('sox')
-
 sox('"C:\\Program Files (x86)\\sox-14-4-2rc2\\sox.exe"', [
 	'song.ogg',
 	{
@@ -42,7 +39,10 @@ sox('"C:\\Program Files (x86)\\sox-14-4-2rc2\\sox.exe"', [
 		channels: 2
 	}, // ↓
 	'song.wav'
-], function done(err, outFilePath) {
+], [
+	'phaser', '0.6', '0.66', '3', '0.6', '2', '−t'
+],
+function done(err, outFilePath) {
 	console.log(err) // => null
 	console.log(outFilePath) // => song.flac
 })
