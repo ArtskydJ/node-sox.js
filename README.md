@@ -163,7 +163,7 @@ license
 [bitdepth-arg]:   https://en.wikipedia.org/wiki/Audio_bit_depth
 [channel-arg]:    https://en.wikipedia.org/wiki/Audio_channel
 [samplerate-arg]: https://en.wikipedia.org/wiki/Sampling_(signal_processing)#Sampling_rate
-[options]: https://github.com/ArtskydJ/sox/blob/master/OPTIONS.md
+[options]: https://github.com/ArtskydJ/node-sox/blob/master/OPTIONS.md
 [hta]:     https://github.com/ArtskydJ/hash-to-array
 [lame]:    http://lame.sourceforge.net/
 [mad]:     http://www.underbit.com/products/mad

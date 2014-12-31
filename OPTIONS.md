@@ -7,6 +7,7 @@ Some SoX options were purposefully removed from this list, including the options
 #Global Options
 
 The global options can be passed to any file, it doesn't matter.
+
 | Command(s)                                       | Functionality                                                    |
 |:=================================================|:=================================================================|
 | `{buffer: BYTES}`                                | Set the size of all processing buffers (default 8192)            |
@@ -33,28 +34,32 @@ The global options can be passed to any file, it doesn't matter.
 
 When an output option isn't supplied, the output file will have the same format as the input file where possible.
 
-- `{v: FACTOR}`- `{volume: FACTOR}` - Input file volume adjustment factor (real number)
-- `{ignore-length: true}` - Ignore input file length given in header; read to EOF
-- `{t: FILETYPE}`- `{type: FILETYPE}` - File type of audio
-- `{e: ENCODING}`- `{encoding: ENCODING}` - Set encoding to:
-	- 'signed-integer'
-	- 'unsigned-integer'
-	- 'floating-point'
-	- 'mu-law'
-	- 'a-law'
-	- 'ima-adpcm'
-	- 'ms-adpcm'
-	- 'gsm-full-rate'
-- `{b: BITS}`- `{bits: BITS}` - Encoded sample size in bits
-- `{N: true}`- `{reverse-nibbles: true}` - Encoded nibble-order
-- `{X: true}`- `{reverse-bits: true}` - Encoded bit-order
-- `{endian: 'little'}`- `{L: true}` - Encoded byte-order; Little endian
-- `{endian: 'big'}`- `{B: true}` - Encoded byte-order; Big endian
-- `{endian: 'swap'}`- `{x: true}` - Encoded byte-order; swap means opposite to default
-- `{c: true}`- `{channels: CHANNELS}` - Number of channels of audio data; e.g. 2 = stereo
-- `{r: RATE}`- `{rate: RATE}` - Sample rate of audio
-- `{C: FACTOR}`- `{compression: FACTOR}` - Compression factor for output format
-- `{add-comment: TEXT}` - Append output file comment
-- `{comment: TEXT}` - Specify comment text for the output file
-- `{comment-file: FILENAME}` - File containing comment text for the output file
-- `{no-glob: true}` - Don't `glob' wildcard match the following filename
+| Command(s)                                     | Functionality                                         |
+|:===============================================|:======================================================|
+| `{v: FACTOR}`, `{volume: FACTOR}`              | Input file volume adjustment factor (real number)     |
+| `{ignore-length: true}`                        | Ignore input file length given in header; read to EOF |
+| `{t: FILETYPE}`, `{type: FILETYPE}`            | File type of audio                                    |
+| `{e: ENCODING}`, `{encoding: ENCODING}`        | (See below this table)                                |
+| `'-b'`, `{b: BITS}`, `{bits: BITS}`            | Encoded sample size in bits                           |
+| `'-N'`, `{N: true}`, `{reverse-nibbles: true}` | Encoded nibble-order                                  |
+| `'-X'`, `{X: true}`, `{reverse-bits: true}`    | Encoded bit-order                                     |
+| `'-L'`, `{endian: 'little'}`, `{L: true}`      | Encoded byte-order; Little endian                     |
+| `'-B'`, `{endian: 'big'}`, `{B: true}`         | Encoded byte-order; Big endian                        |
+| `'-x'`, `{endian: 'swap'}`, `{x: true}`        | Encoded byte-order; swap means opposite to default    |
+| `{c: CHANNELS}`, `{channels: CHANNELS}`        | Number of channels of audio data; e.g. 2 = stereo     |
+| `{r: RATE}`, `{rate: RATE}`                    | Sample rate of audio                                  |
+| `{C: FACTOR}`, `{compression: FACTOR}`         | Compression factor for output format                  |
+| `{add-comment: TEXT}`                          | Append output file comment                            |
+| `{comment: TEXT}`                              | Specify comment text for the output file              |
+| `{comment-file: FILENAME}`                     | File containing comment text for the output file      |
+| `{no-glob: true}`                              | Don't `glob' wildcard match the following filename    |
+
+- ENCODING can be one of the following:
+	- `'signed-integer'`
+	- `'unsigned-integer'`
+	- `'floating-point'`
+	- `'mu-law'`
+	- `'a-law'`
+	- `'ima-adpcm'`
+	- `'ms-adpcm'`
+	- `'gsm-full-rate'`
