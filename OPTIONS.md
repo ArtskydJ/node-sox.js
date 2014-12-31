@@ -2,30 +2,31 @@
 
 These options are copied from the help text displayed when running `sox -h`. If you want an exhaustive list of each option in depth, take a look at the [SoX docs](http://sox.sourceforge.net/sox.html#OPTIONS).
 
-Some SoX options were purposefully removed from this list, including the options that cause SoX to write to stdout and the options that are for the file system. (E.g. `--help`, `--version`, `--clobber`)
+Some SoX options were purposefully removed from this list, including the options that cause SoX to write to stdout. (E.g. `--help`, `--version`)
 
 #Global Options
 
 The global options can be passed to any file, it doesn't matter.
-
-- `{buffer: BYTES}` - Set the size of all processing buffers (default 8192)
-- `{combine: 'concatenate'}` - Concatenate all input files (default for sox, rec)
-- `{combine: 'sequence'}` - Sequence all input files (default for play)
-- `{m: true}`- `{combine: 'mix'}` - Mix multiple input files (instead of concatenating)
-- `{combine: 'mix-power'}` - Mix to equal power (instead of concatenating)
-- `{M: true}`- `{combine: 'merge'}` - Merge multiple input files (instead of concatenating)
-- `{T: true}`- `{combine: 'multiply'}` - Multiply samples of corresponding channels from all input files (instead of concatenating)
-- `{D: true}`- `{no-dither: true}` - Don't dither automatically
-- `{effects-file: FILENAME}` - File containing effects and options
-- `{G: true}`- `{guard: true}` - Use temporary files to guard against clipping
-- `{input-buffer: BYTES}` - Override the input buffer size (default: same as --buffer; 8192)
-- `{norm: true}` - Guard (see --guard) & normalise
-- `{play-rate-arg: ARG}` - Default `rate` argument for auto-resample with `play'
-- `{plot: 'gnuplot'|'octave'}` - Generate script to plot response of filter effect
-- `{replay-gain: 'track'|'album'|'off'}` - Default: 'off' (sox, rec), track (play)
-- `{R: true}` - Use default random numbers (same on each run of SoX)
-- `{single-threaded: true}` - Disable parallel effects channels processing
-- `{temp: DIRECTORY}` - Specify the directory to use for temporary files
+| Command(s)                                       | Functionality                                                    |
+|:=================================================|:=================================================================|
+| `{buffer: BYTES}`                                | Set the size of all processing buffers (default 8192)            |
+| `{combine: 'concatenate'}`                       | Concatenate all input files (default for sox, rec)               |
+| `{combine: 'sequence'}`                          | Sequence all input files (default for play)                      |
+| `'-m'`, `{m: true}`, `{combine: 'mix'}`          | Mix multiple input files (instead of concatenating)              |
+| `{combine: 'mix-power'}`                         | Mix to equal power (instead of concatenating)                    |
+| `'-M'`, `{M: true}`, `{combine: 'merge'}`        | Merge multiple input files (instead of concatenating)            |
+| `'-T'`, `{T: true}`, `{combine: 'multiply'}`     | Multiply samples of corresponding channels from all input files (instead of concatenating) |
+| `'-D'`, `{D: true}`, `{no-dither: true}`         | Don't dither automatically                                       |
+| `{effects-file: FILENAME}`                       | File containing effects and options                              |
+| `'-G'`, `{G: true}`, `{guard: true}`             | Use temporary files to guard against clipping                    |
+| `{input-buffer: BYTES}`                          | Override the input buffer size (default: same as --buffer; 8192) |
+| `'--norm'`, `{norm: true}`                       | Guard (see --guard) & normalise                                  |
+| `{play-rate-arg: ARG}`                           | Default `rate` argument for auto-resample with `play'            |
+| `{plot: 'gnuplot'|'octave'}`                     | Generate script to plot response of filter effect                |
+| `{replay-gain: 'track'|'album'|'off'}`           | Default: 'off' (sox, rec), track (play)                          |
+| `'-R'`, `{R: true}`                              | Use default random numbers (same on each run of SoX)             |
+| `'--single-threaded'`, `{single-threaded: true}` | Disable parallel effects channels processing                     |
+| `{temp: DIRECTORY}`                              | Specify the directory to use for temporary files                 |
 
 
 #Format Options

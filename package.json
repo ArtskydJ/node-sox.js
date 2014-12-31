@@ -1,6 +1,6 @@
 {
   "name": "sox",
-  "version": "0.1.8",
+  "version": "0.2.0",
   "description": "Interface to the SoX audio utility",
   "main": "index.js",
   "scripts": {
@@ -30,7 +30,7 @@
     "tap": "^0.4.13"
   },
   "dependencies": {
-    "hash-to-array": "0.0.2",
+    "hash-to-array": "1.0.0",
     "onetime": "^1.0.0"
   }
 }

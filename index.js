@@ -2,36 +2,40 @@ var spawn = require('child_process').spawn
 var hashToArray = require('hash-to-array')
 var onetime = require('onetime')
 
-module.exports = function job(soxFile, options, cb) {
+module.exports = function job(soxFile, filenames, effects, cb) {
 	if (typeof soxFile === 'object') {
-		cb = options
-		options = soxFile
+		cb = effects
+		effects = filenames
+		filenames = soxFile
 		soxFile = 'sox'
 	}
-	cb = onetime( cb || function () {} )
+	if (typeof effects !== 'object') {
+		cb = effects
+		effects = []
+	}
+	cb = onetime( cb || function (e) {if (e) throw e} )
 
-	var outputFilename = Object.keys(options).pop()
-	var args = buildArgs(options)
-	var sox = spawn(soxFile, args)
-	sox.on('exit', function (code, signal) {
-		code ?
-			cb(new Error(signal), outputFilename) :
-			cb(null, outputFilename)
-	})
-	sox.stderr.on('data', function (chunk) {
-		var str = chunk.toString('utf8')
-		cb(new Error(str), outputFilename)
-	})
-	sox.on('error', function (err) {
-		cb(err, outputFilename)
-	})
+	var outputFilename = filenames[filenames.length-1]
+	var args = buildArgs(filenames.concat(effects))
+	var error = null
+
+	spawn(soxFile, args)
+		.on('error', setErrMsg)
+		.on('close', function (code, signal) {
+			setErrMsg(signal)
+			cb(error, outputFilename)
+		})
+		.stderr.on('data', setErrMsg)
+
+	function setErrMsg(err) {
+		if (!error && err) {
+			error = (err instanceof Error) ? err : new Error(err)
+		}
+	}
 }
 
-function buildArgs(options) {
-	return Object.keys(options).reduce(function (args, filename) {
-		return args.concat(
-			hashToArray(options[filename]),
-			filename
-		)
+function buildArgs(opts) {
+	return opts.reduce(function (args, opt) {
+		return args.concat( hashToArray(opt) )
 	}, [])
 }
