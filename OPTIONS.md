@@ -9,7 +9,7 @@ Some SoX options were purposefully removed from this list, including the options
 The global options can be passed to any file, it doesn't matter.
 
 | Command(s)                                       | Functionality                                                    |
-|:=================================================|:=================================================================|
+|:-------------------------------------------------|:-----------------------------------------------------------------|
 | `{buffer: BYTES}`                                | Set the size of all processing buffers (default 8192)            |
 | `{combine: 'concatenate'}`                       | Concatenate all input files (default for sox, rec)               |
 | `{combine: 'sequence'}`                          | Sequence all input files (default for play)                      |
@@ -35,7 +35,7 @@ The global options can be passed to any file, it doesn't matter.
 When an output option isn't supplied, the output file will have the same format as the input file where possible.
 
 | Command(s)                                     | Functionality                                         |
-|:===============================================|:======================================================|
+|:-----------------------------------------------|:------------------------------------------------------|
 | `{v: FACTOR}`, `{volume: FACTOR}`              | Input file volume adjustment factor (real number)     |
 | `{ignore-length: true}`                        | Ignore input file length given in header; read to EOF |
 | `{t: FILETYPE}`, `{type: FILETYPE}`            | File type of audio                                    |
