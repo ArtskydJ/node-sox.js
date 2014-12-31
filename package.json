@@ -1,0 +1,36 @@
+{
+  "name": "sox",
+  "version": "0.1.8",
+  "description": "Interface to the SoX audio utility",
+  "main": "index.js",
+  "scripts": {
+    "test": "tap test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ArtskydJ/node-sox.git"
+  },
+  "keywords": [
+    "sox",
+    "audio",
+    "utility",
+    "transcode",
+    "convert"
+  ],
+  "author": "Joseph Dykstra",
+  "license": "VOL",
+  "bugs": {
+    "url": "https://github.com/ArtskydJ/node-sox/issues"
+  },
+  "homepage": "https://github.com/ArtskydJ/node-sox",
+  "devDependencies": {
+    "concat-stream": "^1.4.7",
+    "mkdirp": "^0.5.0",
+    "rimraf": "^2.2.8",
+    "tap": "^0.4.13"
+  },
+  "dependencies": {
+    "hash-to-array": "0.0.2",
+    "onetime": "^1.0.0"
+  }
+}
