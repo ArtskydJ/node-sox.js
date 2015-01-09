@@ -1,14 +1,14 @@
 {
-  "name": "sox",
-  "version": "0.2.0",
-  "description": "Interface to the SoX audio utility",
+  "name": "sox.js",
+  "version": "1.0.0",
+  "description": "Use the SoX audio utility in node!",
   "main": "index.js",
   "scripts": {
     "test": "tap test.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ArtskydJ/node-sox.git"
+    "url": "https://github.com/ArtskydJ/sox.js.git"
   },
   "keywords": [
     "sox",
@@ -20,9 +20,9 @@
   "author": "Joseph Dykstra",
   "license": "VOL",
   "bugs": {
-    "url": "https://github.com/ArtskydJ/node-sox/issues"
+    "url": "https://github.com/ArtskydJ/sox.js/issues"
   },
-  "homepage": "https://github.com/ArtskydJ/node-sox",
+  "homepage": "https://github.com/ArtskydJ/sox.js",
   "devDependencies": {
     "concat-stream": "^1.4.7",
     "mkdirp": "^0.5.0",

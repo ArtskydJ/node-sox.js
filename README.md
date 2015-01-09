@@ -1,5 +1,5 @@
-node-sox
-========
+sox.js
+======
 
 A wrapper around [SoX][sox]. Transcode audio files easily!
 
@@ -10,13 +10,13 @@ examples
 
 Simple transcode:
 ```js
-var sox = require('sox')
+var sox = require('sox.js')
 sox([ 'song.wav', 'song.flac' ])
 ```
 
 Lower volume:
 ```js
-var sox = require('sox')
+var sox = require('sox.js')
 sox([
 	{ volume: 0.8 }, //options for the file go before it
 	// ↓
@@ -30,7 +30,7 @@ sox([
 
 Transcode with options and effects:
 ```js
-var sox = require('sox')
+var sox = require('sox.js')
 sox('"C:\\Program Files (x86)\\sox-14-4-2rc2\\sox.exe"', [
 	'song.ogg',
 	{
@@ -137,7 +137,7 @@ codec support
 
 ###MP3
 
-- **Problem:** MP3 is [proprietary](https://en.wikipedia.org/wiki/LAME#Patents_and_legal_issues). It's really lame and makes me mad.
+- **Problem:** MP3 is [proprietary](https://en.wikipedia.org/wiki/LAME#Patents_and_legal_issues).
 - **Solution:** Compile the [LAME][lame] encoder, and/or the [MAD][mad] decoder.
 - **Links:**
 	- [Windows (Precompiled)](https://github.com/EaterOfCode/sux/tree/master/win_libs)
@@ -153,6 +153,8 @@ license
 
 [VOL](http://veryopenlicense.com)
 
+TLDR; Use it for whatever.
+
 
 
 [sox]:         http://sox.sourceforge.net/
@@ -163,7 +165,7 @@ license
 [bitdepth-arg]:   https://en.wikipedia.org/wiki/Audio_bit_depth
 [channel-arg]:    https://en.wikipedia.org/wiki/Audio_channel
 [samplerate-arg]: https://en.wikipedia.org/wiki/Sampling_(signal_processing)#Sampling_rate
-[options]: https://github.com/ArtskydJ/node-sox/blob/master/OPTIONS.md
+[options]: https://github.com/ArtskydJ/sox.js/blob/master/OPTIONS.md
 [hta]:     https://github.com/ArtskydJ/hash-to-array
 [lame]:    http://lame.sourceforge.net/
 [mad]:     http://www.underbit.com/products/mad
