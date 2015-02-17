@@ -4,9 +4,7 @@ sox.js
 A wrapper around [SoX][sox]. Transcode audio files easily!
 
 
-
-examples
-========
+# examples
 
 Simple transcode:
 ```js
@@ -49,9 +47,7 @@ function done(err, outFilePath) {
 ```
 
 
-
-sox([soxPath], filenames, [effects], [cb])
-==========================================
+# sox([soxPath], filenames, [effects], [cb])
 
 - `soxPath` is a string of the path to SoX. Optional, defaults to `'sox'`, which works if the SoX binary is in your path. Note that you might need double quotes around the path if there are spaces in it. E.g. `'"C:\Program Files\Sox\sox.exe"'`.
 - `filenames` is an array, and is required. The elements can be strings, arrays of strings, numbers, or objects:
@@ -76,11 +72,9 @@ sox([soxPath], filenames, [effects], [cb])
 	- `outFilePath` is the outgoing file path. E.g. `'song.flac'`.
 
 
+# common options
 
-common options
-==============
-
-###input and output:
+### input and output:
 
 If you use these options on input files, they will be used to interpret the incoming file.  
 Usually you want to use these on output files, so they will be used to format the outgoing file.
@@ -89,22 +83,20 @@ Usually you want to use these on output files, so they will be used to format th
 - [`c`][channel-arg] or [`channels`][channel-arg], **number**, number of channels. E.g. `2` for stereo.
 - [`r`][samplerate-arg] or [`rate`][samplerate-arg], **number**, sample rate. E.g. `44100`.
 
-###input-only:
+### input-only:
 
 - `v` or `volume`, **floating point number**, volume adjustment. E.g. `0.8` would make the output file 80% of the volume of the original (which would be slightly quieter), while `1.0` would preserve the volume.
 
-###output-only
+### output-only
 
 - `C` or `compression`, **integer** or **float**, usage depends on output file type. See [SoX format docs][sox-format] for more information.
 
-###need more?
+### need more?
 
 SoX options that you probably won't need are listed in [OPTIONS.md][options].
 
 
-
-install
-=======
+# install
 
 Install [SoX 14.4.1a][sox-1441] or [SoX 14.4.2rc2][sox-1442]. Then install this package with npm: 
 
@@ -126,16 +118,14 @@ I run the tests using:
 Other versions of SoX should work fine.
 
 
+# codec support
 
-codec support
-=============
-
-###FLAC
+### FLAC
 
 - **Problem:** FLAC was disabled accidentally in 14.4.1 (SourceForge default). [[Stack Overflow][so-flac]]
 - **Solution:** Install [SoX 14.4.1a][sox-1441] or [SoX 14.4.2rc2][sox-1442].
 
-###MP3
+### MP3
 
 - **Problem:** MP3 is [proprietary](https://en.wikipedia.org/wiki/LAME#Patents_and_legal_issues).
 - **Solution:** Compile the [LAME][lame] encoder, and/or the [MAD][mad] decoder.
@@ -147,13 +137,9 @@ codec support
 	- [CentOS (How-To)](http://techblog.netwater.com/?p=4)
 
 
-
-license
-=======
+# license
 
 [VOL](http://veryopenlicense.com)
-
-TLDR; Use it for whatever.
 
 
 
