@@ -29,7 +29,7 @@ sox([
 Transcode with options and effects:
 ```js
 var sox = require('sox.js')
-sox('"C:\\Program Files (x86)\\sox-14-4-2rc2\\sox.exe"', [
+sox('"C:\\Program Files (x86)\\sox-14-4-2\\sox.exe"', [
 	'song.ogg',
 	{
 		bits: 16,
@@ -98,7 +98,7 @@ SoX options that you probably won't need are listed in [OPTIONS.md][options].
 
 # install
 
-Install [SoX 14.4.1a][sox-1441] or [SoX 14.4.2rc2][sox-1442]. Then install this package with npm: 
+Install [SoX 14.4.2][sox-1442]. Then install this package with npm: 
 
 ```
 npm install sox
@@ -110,20 +110,15 @@ To run the tests, you must clone the [git repository](https://github.com/Artskyd
 npm test
 ```
 
-I run the tests using:
-
-- [SoX 14.4.1a][sox-1441]
-- [SoX 14.4.2rc2][sox-1442]
-
-Other versions of SoX should work fine.
+I run the tests using [SoX 14.4.2][sox-1442], but other versions of SoX should work fine.
 
 
 # codec support
 
 ### FLAC
 
-- **Problem:** FLAC was disabled accidentally in 14.4.1 (SourceForge default). [[Stack Overflow][so-flac]]
-- **Solution:** Install [SoX 14.4.1a][sox-1441] or [SoX 14.4.2rc2][sox-1442].
+- **Problem:** FLAC was disabled accidentally in 14.4.1. [[Stack Overflow][so-flac]]
+- **Solution:** Install [SoX 14.4.2][sox-1442].
 
 ### MP3
 
@@ -144,8 +139,7 @@ Other versions of SoX should work fine.
 
 
 [sox]:         http://sox.sourceforge.net/
-[sox-1441]:    http://sourceforge.net/projects/sox/files/sox/14.4.1/
-[sox-1442]:    http://sourceforge.net/projects/sox/files/release_candidates/sox/14.4.2rc2/
+[sox-1442]:    http://sourceforge.net/projects/sox/files/sox/14.4.2/
 [sox-effects]: http://sox.sourceforge.net/sox.html#EFFECTS
 [sox-format]:  http://sox.sourceforge.net/soxformat.html
 [bitdepth-arg]:   https://en.wikipedia.org/wiki/Audio_bit_depth
