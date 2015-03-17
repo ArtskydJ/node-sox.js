@@ -1,6 +1,6 @@
 {
   "name": "sox.js",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Use the SoX audio utility in node!",
   "main": "index.js",
   "scripts": {
@@ -23,14 +23,14 @@
     "url": "https://github.com/ArtskydJ/sox.js/issues"
   },
   "homepage": "https://github.com/ArtskydJ/sox.js",
+  "dependencies": {
+    "hash-to-array": "1.0.0",
+    "onetime": "^1.0.0"
+  },
   "devDependencies": {
     "concat-stream": "^1.4.7",
     "mkdirp": "^0.5.0",
     "rimraf": "^2.2.8",
     "tap": "^0.4.13"
-  },
-  "dependencies": {
-    "hash-to-array": "1.0.0",
-    "onetime": "^1.0.0"
   }
 }
