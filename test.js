@@ -68,13 +68,6 @@ test('ogg > wav - options - adjusted volume', {timeout: 3000}, function (t) {
 	], assertSize(t, 2724056))
 })
 
-test('ogg > mp3', function (t) {
-	sox([
-		relativePath('test_3.ogg'),
-		'./tmp/test_3.mp3'
-	], assertSize(t, 230295))
-})
-
 test('wav > flac', function (t) {
 	sox([
 		relativePath('test_4.wav'),
@@ -116,13 +109,6 @@ test('combinations of arguments', function (t) {
 		t.pass('combos don\'t throw errors')
 		t.end()
 	}, 1000)
-})
-
-test('wav > mp3', function (t) {
-	sox([
-		relativePath('test_6.wav'),
-		'./tmp/test_6.mp3'
-	], assertSize(t, 264986))
 })
 
 test('flac > ogg', function (t) {
