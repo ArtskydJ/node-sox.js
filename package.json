@@ -4,6 +4,7 @@
   "description": "Use the SoX audio utility in node!",
   "main": "index.js",
   "scripts": {
+    "pretest": "apt-get install sox || exit 0",
     "test": "node test.js"
   },
   "repository": {
