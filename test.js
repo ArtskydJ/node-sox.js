@@ -1,9 +1,13 @@
-var test = require('tap').test
+var test = require('tape')
 var sox = require('./')
 var fs = require('fs')
 var concat = require('concat-stream')
 var rimraf = require('rimraf')
 var mkdirp = require('mkdirp')
+var path = require('path')
+
+var audioPath = path.dirname( require.resolve('test-audio') )
+var relativePath = path.join.bind(null, audioPath)
 
 function closeEnough(x, y) {
 	var ratio = x / y
@@ -31,7 +35,7 @@ test('create temp dir', function (t) {
 
 test('ogg > wav', function (t) {
 	sox([
-		'test-audio/test_1.ogg',
+		relativePath('test_1.ogg'),
 		'./tmp/test_1i.wav'
 	], assertSize(t, 138636))
 })
@@ -46,7 +50,7 @@ var test_2 = {
 test('ogg > wav - options - too loud', function (t) {
 	t.plan(2)
 	sox([
-		'./test-audio/test_2.ogg',
+		relativePath('test_2.ogg'),
 		test_2,
 		'./tmp/test_2l.wav'
 	], function (err) {
@@ -58,7 +62,7 @@ test('ogg > wav - options - too loud', function (t) {
 test('ogg > wav - options - adjusted volume', {timeout: 3000}, function (t) {
 	sox([
 		{ v: 0.99 },
-		'./test-audio/test_2.ogg',
+		relativePath('test_2.ogg'),
 		test_2,
 		'./tmp/test_2a.wav'
 	], assertSize(t, 2724056))
@@ -66,21 +70,21 @@ test('ogg > wav - options - adjusted volume', {timeout: 3000}, function (t) {
 
 test('ogg > mp3', function (t) {
 	sox([
-		'./test-audio/test_3.ogg',
+		relativePath('test_3.ogg'),
 		'./tmp/test_3.mp3'
 	], assertSize(t, 230295))
 })
 
 test('wav > flac', function (t) {
 	sox([
-		'./test-audio/test_4.wav',
+		relativePath('test_4.wav'),
 		'./tmp/test_4.flac'
 	], assertSize(t, 13993))
 })
 
 test('wav > ogg with effects', function (t) {
 	sox([
-		'./test-audio/test_5.wav',
+		relativePath('test_5.wav'),
 		'./tmp/test_5t.ogg'
 	], [
 		'swap',
@@ -91,7 +95,7 @@ test('wav > ogg with effects', function (t) {
 
 test('combinations of arguments', function (t) {
 	sox([ //opts, fx
-		'./test-audio/test_4.wav',
+		relativePath('test_4.wav'),
 		'./tmp/wc1.ogg'
 	], [
 		'swap',
@@ -100,12 +104,12 @@ test('combinations of arguments', function (t) {
 	])
 
 	sox([ //opts
-		'./test-audio/test_5.wav',
+		relativePath('test_5.wav'),
 		'./tmp/wc2.ogg'
 	])
 
 	sox('sox', [ //path, opts
-		'./test-audio/test_6.wav',
+		relativePath('test_6.wav'),
 		'./tmp/wc3.ogg'
 	])
 	setTimeout(function () {
@@ -116,14 +120,14 @@ test('combinations of arguments', function (t) {
 
 test('wav > mp3', function (t) {
 	sox([
-		'./test-audio/test_6.wav',
+		relativePath('test_6.wav'),
 		'./tmp/test_6.mp3'
 	], assertSize(t, 264986))
 })
 
 test('flac > ogg', function (t) {
 	sox([
-		'./test-audio/test_7.flac',
+		relativePath('test_7.flac'),
 		'./tmp/test_7.ogg'
 	], assertSize(t, 265597))
 })

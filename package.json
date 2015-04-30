@@ -1,10 +1,10 @@
 {
   "name": "sox.js",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Use the SoX audio utility in node!",
   "main": "index.js",
   "scripts": {
-    "test": "tap test.js"
+    "test": "node test.js"
   },
   "repository": {
     "type": "git",
@@ -31,6 +31,7 @@
     "concat-stream": "^1.4.7",
     "mkdirp": "^0.5.0",
     "rimraf": "^2.2.8",
-    "tap": "^0.4.13"
+    "tape": "^4.0.0",
+    "test-audio": "^1.0.0"
   }
 }

@@ -1,6 +1,8 @@
 sox.js
 ======
 
+[![Build Status](https://travis-ci.org/ArtskydJ/sox.js.svg)](https://travis-ci.org/ArtskydJ/sox.js)
+
 A wrapper around [SoX][sox]. Transcode audio files easily!
 
 
@@ -98,7 +100,7 @@ SoX options that you probably won't need are listed in [OPTIONS.md][options].
 
 # install
 
-Install [SoX 14.4.2][sox-1442]. Then install this package with npm: 
+Install [SoX 14.4.2][sox-1442]. Then install this package with npm:
 
 ```
 npm install sox
