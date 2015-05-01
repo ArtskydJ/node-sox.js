@@ -40,30 +40,16 @@ test('ogg > wav', function (t) {
 	], assertSize(t, 138636))
 })
 
-var test_2 = {
-	b: 16,
-	c: 1,
-	r: 44100,
-	C: 5
-}
-
-test('ogg > wav - options - too loud', function (t) {
-	t.plan(2)
-	sox([
-		relativePath('test_2.ogg'),
-		test_2,
-		'./tmp/test_2l.wav'
-	], function (err) {
-		t.ok(/sox WARN rate/.test(err.message), 'error message is a warning')
-		t.ok(/clipped/.test(err.message), 'error message says it clipped')
-	})
-})
-
 test('ogg > wav - options - adjusted volume', {timeout: 3000}, function (t) {
 	sox([
-		{ v: 0.99 },
+		{ v: 0.9 },
 		relativePath('test_2.ogg'),
-		test_2,
+		{
+			b: 16,
+			c: 1,
+			r: 44100,
+			C: 5
+		},
 		'./tmp/test_2a.wav'
 	], assertSize(t, 2724056))
 })
