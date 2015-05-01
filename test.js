@@ -82,7 +82,7 @@ test('wav > ogg with effects', function (t) {
 	], [
 		'swap',
 		['delay', 0.8],
-		['phaser', 0.6, 0.66, 3, 0.6, 2, '−t']
+		['phaser', 0.6, 0.66, 3, 0.6, 2, '-t']
 	], assertSize(t, 28821))
 })
 
@@ -91,9 +91,8 @@ test('combinations of arguments', function (t) {
 		relativePath('test_4.wav'),
 		'./tmp/wc1.ogg'
 	], [
-		'swap',
 		['delay', 0.8],
-		['phaser', 0.6, 0.66, 3, 0.6, 2, '−t']
+		['phaser', 0.6, 0.66, 3, 0.6, 2, '-t']
 	])
 
 	sox([ //opts
