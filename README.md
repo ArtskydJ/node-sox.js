@@ -51,29 +51,67 @@ function done(err, outFilePath) {
 ```
 
 
-# sox([soxPath], filenames, [effects], [cb])
+# `sox([soxPath], filenames, [effects], [cb])`
 
-- `soxPath` is a string of the path to SoX. Optional, defaults to `'sox'`, which works if the SoX binary is in your path. Note that you might need double quotes around the path if there are spaces in it. E.g. `'"C:\Program Files\Sox\sox.exe"'`.
-- `filenames` is an array, and is required. The elements can be strings, arrays of strings, numbers, or objects:
-	- **object**
-		- The object will be transformed into a list of strings. The properties will have dashes automatically prepended. See [hash-to-array][hta] for more details.
-		- To describe the options for a file, the object must be listed right *before* that file.
-		- See [common options](#common-options].
-	- **String**
-		- Usually a filename, e.g. `'./song.wav'`.
-		- Can be used for options or global options. Remember that options for a file must be listed before the file.
-- `effects` is an optional array, and defaults to `[]`.
-	- **String**
-		- Effect name. E.g. `'reverse'`, `'swap'`, `'speed 1.5'`.
-		- Effect option. E.g. `'-h'`, `1.5`
-	- **Array of strings**
-		- If strings are grouped, (e.g. effects properties) you can put them in an array.
-		- This will act just like putting them in individual strings.
-		- E.g. `['speed', 1.5]`
-	- To see what options are available, read the [SoX effects docs][sox-effects].
-- `cb` is an function that is called when the conversion process is complete. Optional; if omitted, errors are thrown. The function is passed the following parameters:
-	- `err` is an Error object if the conversion failed, or null if successful.
-	- `outFilePath` is the outgoing file path. E.g. `'song.flac'`.
+### `soxPath` string
+
+The path to SoX, defaults to `'sox'`, which works if SoX is in your path.
+
+Note that you might need double quotes around the path if there are spaces in it. E.g. `'"C:\Program Files\Sox\sox.exe"'`.
+
+### `filenames` array
+
+The elements can be strings, arrays of strings, numbers, or objects.
+
+###### object element
+
+The object will be transformed into a list of strings using [hash-to-array][hta].
+
+To describe the options for a file, the object must be listed right *before* that file. See [common options](#common-options).
+
+###### string element
+
+Usually a filename, like `'./song.wav'`.
+
+Can be used for options or global options. Remember that options for a file must be listed before the file.
+
+### `effects` array
+
+To see what options are available, read the [SoX effects docs][sox-effects].
+
+###### string, or number element
+
+Effect name: `'reverse'`, `'swap'`, `'speed 1.5'`
+
+Or effect option: `'-h'`, `1.5`
+
+###### array element (array of strings)
+
+You can put strings into subarrays, which will be flattened internally, so this will act just like putting them in individual strings. E.g. `['speed', 1.5]`
+
+
+```js
+var effects = [
+	'speed', '1.5',
+	'swap'
+]
+// same as
+var effects = [
+	'speed 1.5 swap'
+]
+// same as
+var effects = [
+	[ 'speed', '1.5' ],
+	'swap'
+]
+
+```
+
+### `cb` function
+
+A function that is called when the conversion process is complete. Optional; if omitted, errors are thrown. The function is passed the following parameters:
+- `err` is null or an Error object.
+- `outFilePath` is the outgoing file path. E.g. `'song.flac'`.
 
 
 # common options
