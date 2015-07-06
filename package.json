@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/ArtskydJ/sox.js",
   "dependencies": {
-    "hash-to-array": "1.0.0",
+    "hash-to-array": "^1.0.0",
     "onetime": "^1.0.0"
   },
   "devDependencies": {
