@@ -1,12 +1,10 @@
-sox.js
-======
+# sox.js
 
 [![Build Status](https://travis-ci.org/ArtskydJ/sox.js.svg)](https://travis-ci.org/ArtskydJ/sox.js)
-[![Dependency Status](https://david-dm.org/artskydj/sox.js.svg)](https://david-dm.org/artskydj/sox.js)
-[![devDependency Status](https://david-dm.org/artskydj/sox.js/dev-status.svg)](https://david-dm.org/artskydj/sox.js#info=devDependencies)
+[![Dependency Status](https://david-dm.org/ArtskydJ/sox.js.svg)](https://david-dm.org/ArtskydJ/sox.js)
+[![devDependency Status](https://david-dm.org/ArtskydJ/sox.js/dev-status.svg)](https://david-dm.org/ArtskydJ/sox.js#info=devDependencies)
 
 A wrapper around [SoX][sox]. Transcode audio files easily!
-
 
 # examples
 
@@ -50,8 +48,12 @@ function done(err, outFilePath) {
 })
 ```
 
+# api
+```js
+var sox = require('sox.js')
+```
 
-# `sox([soxPath], filenames, [effects], [cb])`
+## `sox([soxPath], filenames, [effects], [cb])`
 
 ### `soxPath` string
 
@@ -104,7 +106,6 @@ var effects = [
 	[ 'speed', '1.5' ],
 	'swap'
 ]
-
 ```
 
 ### `cb` function
@@ -112,7 +113,6 @@ var effects = [
 A function that is called when the conversion process is complete. Optional; if omitted, errors are thrown. The function is passed the following parameters:
 - `err` is null or an Error object.
 - `outFilePath` is the outgoing file path. E.g. `'song.flac'`.
-
 
 # common options
 
@@ -137,7 +137,6 @@ Usually you want to use these on output files, so they will be used to format th
 
 SoX options that you probably won't need are listed in [OPTIONS.md][options].
 
-
 # install
 
 Install [SoX 14.4.2][sox-1442]. Then install this package with npm:
@@ -153,7 +152,6 @@ npm test
 ```
 
 I run the tests using [SoX 14.4.2][sox-1442], but other versions of SoX should work fine.
-
 
 # codec support
 
@@ -173,12 +171,9 @@ I run the tests using [SoX 14.4.2][sox-1442], but other versions of SoX should w
 	- [Ubuntu (How-To) 2](http://eggblog.invertedegg.com/?p=19)
 	- [CentOS (How-To)](http://techblog.netwater.com/?p=4)
 
-
 # license
 
 [VOL](http://veryopenlicense.com)
-
-
 
 [sox]:         http://sox.sourceforge.net/
 [sox-1442]:    http://sourceforge.net/projects/sox/files/sox/14.4.2/
