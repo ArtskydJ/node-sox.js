@@ -1,10 +1,8 @@
 # sox.js
 
-[![Build Status](https://travis-ci.org/ArtskydJ/sox.js.svg)](https://travis-ci.org/ArtskydJ/sox.js)
-[![Dependency Status](https://david-dm.org/ArtskydJ/sox.js.svg)](https://david-dm.org/ArtskydJ/sox.js)
-[![devDependency Status](https://david-dm.org/ArtskydJ/sox.js/dev-status.svg)](https://david-dm.org/ArtskydJ/sox.js#info=devDependencies)
+> A wrapper around [SoX][sox]. Transcode audio files easily!
 
-A wrapper around [SoX][sox]. Transcode audio files easily!
+[![Build Status](https://travis-ci.org/ArtskydJ/sox.js.svg)](https://travis-ci.org/ArtskydJ/sox.js)
 
 # examples
 
