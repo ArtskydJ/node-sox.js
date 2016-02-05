@@ -28,7 +28,6 @@
     "onetime": "^1.0.0"
   },
   "devDependencies": {
-    "concat-stream": "^1.4.7",
     "mkdirp": "^0.5.0",
     "rimraf": "^2.2.8",
     "tape": "^4.0.0",
