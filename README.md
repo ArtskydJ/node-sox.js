@@ -1,10 +1,10 @@
-# sox.js
+# SoX.js
 
 > A wrapper around [SoX][sox]. Transcode audio files easily!
 
 [![Build Status](https://travis-ci.org/ArtskydJ/sox.js.svg)](https://travis-ci.org/ArtskydJ/sox.js)
 
-# examples
+# Examples
 
 Simple transcode:
 ```js
@@ -44,7 +44,7 @@ sox({
 })
 ```
 
-# api
+# API
 ```js
 var sox = require('sox.js')
 ```
@@ -63,8 +63,8 @@ The path to SoX, defaults to `'sox'`, which works if SoX is in your path.
 
 Note that you might need double quotes around the path if there are spaces in it. E.g. `'"C:\Program Files\Sox\sox.exe"'`.
 
-### `options.inputFile` string **required**
-### `options.outputFile` string **required**
+### `options.inputFile` string, required
+### `options.outputFile` string, required
 
 A file path, like `'./song.wav'`.
 
@@ -72,7 +72,7 @@ A file path, like `'./song.wav'`.
 ### `options.input` object|array of strings/numbers
 ### `options.output` object|array of strings/numbers
 
-You can supply an array of strings, or an object that will be transformed into an array of strings using [hash-to-array][hta].
+You can supply an array of strings/numbers, or an object that will be transformed into an array of strings/numbers using [hash-to-array][hta].
 
 See [common options](#common-options).
 
@@ -80,7 +80,7 @@ See [common options](#common-options).
 
 To see what options are available, read the [SoX effects docs][sox-effects].
 
-You can put strings into subarrays, which will be flattened internally, so this will act just like putting them in individual strings. E.g. `[ 'speed', 1.5 ]`
+You can put strings/numbers into sub-arrays, which will be flattened internally.
 
 ```js
 sox({
@@ -88,14 +88,15 @@ sox({
 	outputFile: './b.wav'
 
 	effects: 'speed 1.5 swap'
-	effects: [
-		'speed 1.5 swap'
-	],
 	// same as
 	effects: [
-		'speed', '1.5',
+		'speed 1.5 swap'
+	]
+	// same as
+	effects: [
+		'speed', 1.5,
 		'swap'
-	],
+	]
 	// same as
 	effects: [
 		[ 'speed', '1.5' ],
@@ -110,7 +111,7 @@ A function that is called when the conversion process is complete. Optional; if 
 - `err` is null or an Error object.
 - `outFilePath` is the outgoing file path. E.g. `'song.flac'`.
 
-# common options
+# Common Options
 
 ### input and output:
 
@@ -121,35 +122,30 @@ Usually you want to use these on output files, so they will be used to format th
 - [`c`][channel-arg] or [`channels`][channel-arg], **number**, number of channels. E.g. `2` for stereo.
 - [`r`][samplerate-arg] or [`rate`][samplerate-arg], **number**, sample rate. E.g. `44100`.
 
-### input-only:
+### Input-only:
 
 - `v` or `volume`, **floating point number**, volume adjustment. E.g. `0.8` would make the output file 80% of the volume of the original (which would be slightly quieter), while `1.0` would preserve the volume.
 
-### output-only
+### Output-only
 
 - `C` or `compression`, **integer** or **float**, usage depends on output file type. See [SoX format docs][sox-format] for more information.
 
-### need more?
+### Need more?
 
 SoX options that you probably won't need are listed in [OPTIONS.md][options].
 
-# install
+# Install
 
-Install [SoX 14.4.2][sox-1442]. Then install this package with npm:
+- Install SoX. You can [download it][sox-1442], or you can do `apt-get install sox`.
+- Install this package with npm: `npm install sox`
 
-```
-npm install sox
-```
+# Test
 
-To run the tests, you must clone the [git repository](https://github.com/ArtskydJ/sox). (The test audio files are too large to put in the npm package.) You must also have SoX in your `PATH`. Then run:
-
-```
-npm test
-```
+To run the tests, you must also have SoX in your PATH. Then run: `npm test`
 
 I run the tests using [SoX 14.4.2][sox-1442], but other versions of SoX should work fine.
 
-# codec support
+# Codec Support
 
 ### FLAC
 
@@ -167,9 +163,9 @@ I run the tests using [SoX 14.4.2][sox-1442], but other versions of SoX should w
 	- [Ubuntu (How-To) 2](http://eggblog.invertedegg.com/?p=19)
 	- [CentOS (How-To)](http://techblog.netwater.com/?p=4)
 
-# license
+# License
 
-[VOL](http://veryopenlicense.com)
+[MIT](http://choosealicense.com/licenses/mit/)
 
 [sox]:         http://sox.sourceforge.net/
 [sox-1442]:    http://sourceforge.net/projects/sox/files/sox/14.4.2/
