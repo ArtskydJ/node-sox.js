@@ -68,15 +68,15 @@ Note that you might need double quotes around the path if there are spaces in it
 
 A file path, like `'./song.wav'`.
 
-### `options.global` object|array of strings
-### `options.input` object|array of strings
-### `options.output` object|array of strings
+### `options.global` object|array of strings/numbers
+### `options.input` object|array of strings/numbers
+### `options.output` object|array of strings/numbers
 
 You can supply an array of strings, or an object that will be transformed into an array of strings using [hash-to-array][hta].
 
 See [common options](#common-options).
 
-### `options.effects` string|array of strings
+### `options.effects` string|array of strings/numbers/arrays
 
 To see what options are available, read the [SoX effects docs][sox-effects].
 

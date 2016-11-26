@@ -61,16 +61,31 @@ test('wav > flac', function (t) {
 	}, assertSize(t, 4711))
 })
 
-test('wav > ogg with effects', function (t) {
+test('wav > ogg with effects string', function (t) {
+	sox({
+		inputFile: testAudio.wav.path,
+		outputFile: path.join(tmpDir, 'test_5t.ogg'),
+		effects: 'swap'
+	}, assertSize(t, 5792))
+})
+
+test('wav > ogg with effects array of strings', function (t) {
+	sox({
+		inputFile: testAudio.wav.path,
+		outputFile: path.join(tmpDir, 'test_5t.ogg'),
+		effects: [ 'phaser', 0.6, 0.66, 3, 0.6, 2, '-t' ]
+	}, assertSize(t, 5979))
+})
+
+test('wav > ogg with effects sub-array', function (t) {
 	sox({
 		inputFile: testAudio.wav.path,
 		outputFile: path.join(tmpDir, 'test_5t.ogg'),
 		effects: [
-			['delay', 0.8],
-			['phaser', 0.6, 0.66, 3, 0.6, 2, '-t'],
+			[ 'phaser', 0.6, 0.66, 3, 0.6, 2, '-t' ],
 			'swap'
 		]
-	}, assertSize(t, 15737))
+	}, assertSize(t, 5995))
 })
 
 test('flac > ogg', function (t) {
