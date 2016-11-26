@@ -20,7 +20,7 @@ module.exports = function runSox(opts, callback) {
 			return flattened.concat(ele)
 		}, [])
 
-	var sox = spawn(opts.soxFile || 'sox', args)
+	var sox = spawn(opts.soxPath || 'sox', args)
 	sox.on('error', cb)
 	sox.stderr.on('data', function (stderr) {
 		cb(new Error(stderr))
