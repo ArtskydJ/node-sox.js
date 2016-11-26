@@ -2,40 +2,34 @@ var spawn = require('child_process').spawn
 var hashToArray = require('hash-to-array')
 var onetime = require('onetime')
 
-module.exports = function job(soxFile, filenames, effects, cb) {
-	if (typeof soxFile === 'object') {
-		cb = effects
-		effects = filenames
-		filenames = soxFile
-		soxFile = 'sox'
-	}
-	if (typeof effects !== 'object') {
-		cb = effects
-		effects = []
-	}
-	cb = onetime( cb || function (e) {if (e) throw e} )
+module.exports = function runSox(opts, callback) {
+	if (!opts || typeof opts !== 'object') throw new Error('options must be an object')
+	if (!opts.inputFile) throw new Error('options.inputFile is a required parameter')
+	if (!opts.outputFile) throw new Error('options.outputFile is a required parameter')
 
-	var outputFilename = filenames[filenames.length-1]
-	var args = buildArgs(filenames.concat(effects))
-	var error = null
+	var cb = onetime(callback || function (e) { if (e) throw e })
 
-	spawn(soxFile, args)
-		.on('error', setErrMsg)
-		.on('close', function (code, signal) {
-			setErrMsg(signal)
-			cb(error, outputFilename)
-		})
-		.stderr.on('data', setErrMsg)
+	var args = []
+		.concat(hashToArray(opts.global || []))
+		.concat(hashToArray(opts.input || []))
+		.concat(opts.inputFile)
+		.concat(hashToArray(opts.output || []))
+		.concat(opts.outputFile)
+		.concat(opts.effects || [])
+		.reduce(function (flattened, ele) {
+			return flattened.concat(ele)
+		}, [])
 
-	function setErrMsg(err) {
-		if (!error && err) {
-			error = (err instanceof Error) ? err : new Error(err)
+	var sox = spawn(opts.soxFile || 'sox', args)
+	sox.on('error', cb)
+	sox.stderr.on('data', function (stderr) {
+		cb(new Error(stderr))
+	})
+	sox.on('close', function (code, signal) {
+		if (code) {
+			cb(new Error(signal))
+		} else {
+			cb(null, opts.outputFile)
 		}
-	}
-}
-
-function buildArgs(opts) {
-	return opts.reduce(function (args, opt) {
-		return args.concat( hashToArray(opt) )
-	}, [])
+	})
 }

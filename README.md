@@ -9,40 +9,38 @@
 Simple transcode:
 ```js
 var sox = require('sox.js')
-sox([ 'song.wav', 'song.flac' ])
+sox({ inputFile: 'song.wav', outputFile: 'song.flac' })
 ```
 
 Lower volume:
 ```js
 var sox = require('sox.js')
-sox([
-	{ volume: 0.8 }, //options for the file go before it
-	// ↓
-	'song.flac',
-	'song2.flac'
+sox({
+	input: { volume: 0.8 },
+	inputFile: 'song.flac',
+	outputFile: 'song2.flac'
 ], function done(err, outFilePath) {
 	console.log(err) // => null
-	console.log(outFilePath) // => song.flac
+	console.log(outFilePath) // => song2.flac
 })
 ```
 
 Transcode with options and effects:
 ```js
 var sox = require('sox.js')
-sox('"C:\\Program Files (x86)\\sox-14-4-2\\sox.exe"', [
-	'song.ogg',
-	{
+sox({
+	soxPath: 'C:\\Program Files (x86)\\sox-14-4-2\\sox.exe',
+	inputFile: 'song.ogg',
+	output: {
 		bits: 16,
 		rate: 44100,
 		channels: 2
-	}, // ↓
-	'song.wav'
-], [
-	'phaser', '0.6', '0.66', '3', '0.6', '2', '−t'
-],
-function done(err, outFilePath) {
+	},
+	outputFile: 'song.wav'
+	effects: 'phaser 0.6 0.66 3 0.6 2 −t'
+}, function done(err, outFilePath) {
 	console.log(err) // => null
-	console.log(outFilePath) // => song.flac
+	console.log(outFilePath) // => song.wav
 })
 ```
 
@@ -51,59 +49,59 @@ function done(err, outFilePath) {
 var sox = require('sox.js')
 ```
 
-## `sox([soxPath], filenames, [effects], [cb])`
+## `sox(options, [cb])`
 
-### `soxPath` string
+### `options` object
+
+An object of options. Every option is optional except `options.inputFile` and `options.outputFile`.
+
+Internally, these options are transformed into the command-line arguments passed to a SoX child process.
+
+### `options.soxPath` string
 
 The path to SoX, defaults to `'sox'`, which works if SoX is in your path.
 
 Note that you might need double quotes around the path if there are spaces in it. E.g. `'"C:\Program Files\Sox\sox.exe"'`.
 
-### `filenames` array
+### `options.inputFile` string **required**
+### `options.outputFile` string **required**
 
-The elements can be strings, arrays of strings, numbers, or objects.
+A file path, like `'./song.wav'`.
 
-###### object element
+### `options.global` object|array of strings
+### `options.input` object|array of strings
+### `options.output` object|array of strings
 
-The object will be transformed into a list of strings using [hash-to-array][hta].
+You can supply an array of strings, or an object that will be transformed into an array of strings using [hash-to-array][hta].
 
-To describe the options for a file, the object must be listed right *before* that file. See [common options](#common-options).
+See [common options](#common-options).
 
-###### string element
-
-Usually a filename, like `'./song.wav'`.
-
-Can be used for options or global options. Remember that options for a file must be listed before the file.
-
-### `effects` array
+### `options.effects` string|array of strings
 
 To see what options are available, read the [SoX effects docs][sox-effects].
 
-###### string, or number element
-
-Effect name: `'reverse'`, `'swap'`, `'speed 1.5'`
-
-Or effect option: `'-h'`, `1.5`
-
-###### array element (array of strings)
-
-You can put strings into subarrays, which will be flattened internally, so this will act just like putting them in individual strings. E.g. `['speed', 1.5]`
-
+You can put strings into subarrays, which will be flattened internally, so this will act just like putting them in individual strings. E.g. `[ 'speed', 1.5 ]`
 
 ```js
-var effects = [
-	'speed', '1.5',
-	'swap'
-]
-// same as
-var effects = [
-	'speed 1.5 swap'
-]
-// same as
-var effects = [
-	[ 'speed', '1.5' ],
-	'swap'
-]
+sox({
+	inputFile: './a.wav',
+	outputFile: './b.wav'
+
+	effects: 'speed 1.5 swap'
+	effects: [
+		'speed 1.5 swap'
+	],
+	// same as
+	effects: [
+		'speed', '1.5',
+		'swap'
+	],
+	// same as
+	effects: [
+		[ 'speed', '1.5' ],
+		'swap'
+	]
+})
 ```
 
 ### `cb` function
@@ -116,7 +114,7 @@ A function that is called when the conversion process is complete. Optional; if 
 
 ### input and output:
 
-If you use these options on input files, they will be used to interpret the incoming file.  
+If you use these options on input files, they will be used to interpret the incoming file.
 Usually you want to use these on output files, so they will be used to format the outgoing file.
 
 - [`b`][bitdepth-arg] or [`bits`][bitdepth-arg], **number**, bit depth. E.g. `16`. (Not applicable to complex encodings such as MP3 or GSM.)
