@@ -63,7 +63,7 @@ var sox = require('sox.js')
 	- `input` **object** *optional* - These options will be used to interpret the incoming stream.
 	- `output` **object** *required* - These options will be used to format the outgoing stream. When an output option isn't supplied, the output file will have the same format as the input file where possible. (Except `type`, which you must always pass in.)
 	- `effects` **string|array of strings/numbers** *optional*
-- `cb(err, outPath)` **function** *optional* - A function that is called when the conversion process is complete. If omitted, errors are thrown. The function is passed the following parameters:
+- `cb(err, outputFilePath)` **function** *optional* - A function that is called when the conversion process is complete. If omitted, errors are thrown. The function is passed the following parameters:
 	- `err` **null|Error**
 	- `outputFilePath` **string|undefined** - A string of the outgoing file path, or undefined if an error occurred. E.g. `'song.flac'`.
 
@@ -77,8 +77,7 @@ If you want an exhaustive list of each option in depth, take a look at the [SoX 
 Internally, these options are transformed into the command-line arguments passed to a SoX child process.
 
 
-#### `options.inputFile` string, required
-#### `options.outputFile` string, required
+#### `options.inputFile` / `options.outputFile` string, required
 
 A file path, like `'./song.wav'`.
 
