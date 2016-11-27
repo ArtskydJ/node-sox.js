@@ -10,7 +10,10 @@ sox.js
 Simple transcode:
 ```js
 var sox = require('sox.js')
-sox({ inputFile: 'song.wav', outputFile: 'song.flac' })
+sox({
+	inputFile: 'song.wav',
+	outputFile: 'song.flac'
+})
 ```
 
 Lower volume:
@@ -20,7 +23,7 @@ sox({
 	input: { volume: 0.8 },
 	inputFile: 'song.flac',
 	outputFile: 'song2.flac'
-], function done(err, outputFilePath) {
+}, function done(err, outputFilePath) {
 	console.log(err) // => null
 	console.log(outputFilePath) // => song2.flac
 })
