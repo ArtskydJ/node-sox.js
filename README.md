@@ -61,7 +61,7 @@ var sox = require('sox.js')
 	- `inputFile` **string** *required* - The file path of the input file
 	- `outputFile` **string** *required* - The file path of the output file
 	- `input` **object** *optional* - These options will be used to interpret the incoming stream.
-	- `output` **object** *required* - These options will be used to format the outgoing stream. When an output option isn't supplied, the output file will have the same format as the input file where possible. (Except `type`, which you must always pass in.)
+	- `output` **object** *optional* - These options will be used to format the outgoing stream. When an output option isn't supplied, the output file will have the same format as the input file where possible.
 	- `effects` **string|array of strings/numbers** *optional*
 - `cb(err, outputFilePath)` **function** *optional* - A function that is called when the conversion process is complete. If omitted, errors are thrown. The function is passed the following parameters:
 	- `err` **null|Error**
