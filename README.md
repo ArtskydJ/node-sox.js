@@ -27,6 +27,21 @@ sox({
 	console.log(err) // => null
 	console.log(outputFilePath) // => song2.flac
 })
+
+
+or
+
+sox({
+	input: { volume: 0.8 },
+	inputFile: 'song.flac',
+	outputFile: 'song2.flac'
+})
+.then(outputFilePath => {
+	console.log(outputFilePath) // => song2.flac
+})
+.catch(err => console.log(err))
+
+
 ```
 
 Transcode with options and effects:
