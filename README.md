@@ -85,7 +85,7 @@ A file path, like `'./song.wav'`.
 
 You can supply an array of strings/numbers, or an object that will be transformed into an array of strings/numbers using [hash-to-array][hta].
 
-Currently, `sox-stream` only supports one input file, so some of these options don't really make sense.
+Currently, `sox.js` only supports one input file, so some of these options don't really make sense.
 
 | Command(s)                                         | Functionality                                                    |
 |:---------------------------------------------------|:-----------------------------------------------------------------|
