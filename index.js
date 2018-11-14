@@ -20,7 +20,7 @@ module.exports = function runSox(opts, callback) {
 			return flattened.concat(ele)
 		}, [])
 
-	var sox = spawn(opts.soxPath || 'sox', args, { stdio: [ 'pipe', 'pipe', 'inherit' ] })
+	var sox = spawn(opts.soxPath || 'sox', args, { stdio: [ 'pipe', 'pipe', process.stderr ] })
 	sox.on('error', cb)
 	sox.on('close', function (code, signal) {
 		if (code) {
