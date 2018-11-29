@@ -95,6 +95,30 @@ test('flac > ogg', function (t) {
 	}, assertSize(t, 5086))
 })
 
+test('bad file errOnStderr=undefined', function (t) {
+	sox({
+		inputFile: path.join(__dirname, 'bad.wav'),
+		outputFile: path.join(tmpDir, 'test_8.ogg')
+	}, function (err, filename) {
+		t.ok(err)
+		t.notEqual(-1, err.message.indexOf('sox FAIL formats'))
+		t.notEqual(-1, err.message.indexOf('WAVE: RIFF header not found'))
+		t.end()
+	})
+})
+
+test('bad file errOnStderr=false', function (t) {
+	sox({
+		errOnStderr: false,
+		inputFile: path.join(__dirname, 'bad.wav'),
+		outputFile: path.join(tmpDir, 'test_8.ogg')
+	}, function (err, filename) {
+		t.ok(err)
+		t.equal(err.message, 'Exit code: 2')
+		t.end()
+	})
+})
+
 test('delete temp dir', function (t) {
 	rimraf(tmpDir, function (err) {
 		t.ifError(err)

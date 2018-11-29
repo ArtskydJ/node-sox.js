@@ -57,6 +57,7 @@ var sox = require('sox.js')
 
 - `options` **object** *required* - The following parameters are supported:
 	- `soxPath` **string** *optional* - The path to SoX. E.g. `'C:\Program Files\Sox\sox.exe'`. Defaults to `'sox'`, which works if the SoX binary is in your path.
+	- `errOnStderr` **boolean** *optional* - SoX sometimes logs warnings to stderr. By default, sox.js will call the callback with an error. If you set this to `false`, then the errors will be passed along to `process.stderr`, and the callback will not be called with an error. Defaults to `true`.
 	- `global` **object** *optional* - Global SoX options
 	- `inputFile` **string** *required* - The file path of the input file
 	- `outputFile` **string** *required* - The file path of the output file

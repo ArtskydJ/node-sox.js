@@ -20,11 +20,19 @@ module.exports = function runSox(opts, callback) {
 			return flattened.concat(ele)
 		}, [])
 
-	var sox = spawn(opts.soxPath || 'sox', args, { stdio: [ 'pipe', 'pipe', process.stderr ] })
+	var sox = null
+	if (opts.errOnStderr === false) {
+		sox = spawn(opts.soxPath || 'sox', args, { stdio: [ 'pipe', 'pipe', process.stderr ] })
+	} else {
+		sox = spawn(opts.soxPath || 'sox', args)
+		sox.stderr.on('data', function (stderr) {
+			cb(new Error(stderr))
+		})
+	}
 	sox.on('error', cb)
 	sox.on('close', function (code, signal) {
 		if (code) {
-			cb(new Error(signal))
+			cb(new Error(signal || 'Exit code: ' + code))
 		} else {
 			cb(null, opts.outputFile)
 		}
