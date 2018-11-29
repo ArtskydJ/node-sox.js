@@ -1,5 +1,5 @@
 var test = require('tape')
-var sox = require('./')
+var sox = require('../')
 var fs = require('fs')
 var os = require('os')
 var path = require('path')
