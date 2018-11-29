@@ -1,6 +1,6 @@
 {
   "name": "sox.js",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "Use the SoX audio utility in node!",
   "main": "index.js",
   "scripts": {
