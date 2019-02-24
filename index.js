@@ -5,7 +5,6 @@ var onetime = require('onetime')
 module.exports = function runSox(opts, callback) {
 	if (!opts || typeof opts !== 'object') throw new Error('options must be an object')
 	if (!opts.inputFile) throw new Error('options.inputFile is a required parameter')
-	if (!opts.outputFile) throw new Error('options.outputFile is a required parameter')
 
 	var cb = onetime(callback || function (e) { if (e) throw e })
 
@@ -14,7 +13,7 @@ module.exports = function runSox(opts, callback) {
 		.concat(hashToArray(opts.input || []))
 		.concat(opts.inputFile)
 		.concat(hashToArray(opts.output || []))
-		.concat(opts.outputFile)
+		.concat(opts.outputFile || ['-n'])
 		.concat(opts.effects || [])
 		.reduce(function (flattened, ele) {
 			return flattened.concat(ele)
