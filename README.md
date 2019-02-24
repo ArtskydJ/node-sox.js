@@ -60,7 +60,7 @@ var sox = require('sox.js')
 	- `errOnStderr` **boolean** *optional* - SoX sometimes logs warnings to stderr. By default, sox.js will call the callback with an error. If you set this to `false`, then the errors will be passed along to `process.stderr`, and the callback will not be called with an error. Defaults to `true`.
 	- `global` **object** *optional* - Global SoX options
 	- `inputFile` **string** *required* - The file path of the input file
-	- `outputFile` **string** *required* - The file path of the output file
+	- `outputFile` **string** *optional* - The file path of the output file, null output (`-n`) will be used if not present
 	- `input` **object** *optional* - These options will be used to interpret the incoming stream.
 	- `output` **object** *optional* - These options will be used to format the outgoing stream. When an output option isn't supplied, the output file will have the same format as the input file where possible.
 	- `effects` **string|array of strings/numbers** *optional*
@@ -71,7 +71,7 @@ var sox = require('sox.js')
 
 ### `options` object
 
-An object of options. Every option is optional except `options.inputFile` and `options.outputFile`.
+An object of options. Every option is optional except `options.inputFile`.
 
 If you want an exhaustive list of each option in depth, take a look at the [SoX documentation](http://sox.sourceforge.net/sox.html#OPTIONS).
 
