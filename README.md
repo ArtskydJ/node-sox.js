@@ -86,27 +86,30 @@ A file path, like `'./song.wav'`.
 
 You can supply an array of strings/numbers, or an object that will be transformed into an array of strings/numbers using [hash-to-array][hta].
 
-Currently, `sox.js` only supports one input file, so some of these options don't really make sense.
+Currently, `sox.js` only supports one input file.
+
+<!-- wne sox.js supports more than one input file, add this stuff back into the table below, between buffer and no-dither
+| `{ combine: 'concatenate' }`                       | Concatenate all input files (default for sox, rec)               |
+| `{ combine: 'sequence' }`                          | Sequence all input files (default for play)                      |
+| `{ combine: 'mix' }`                               | Mix multiple input files (instead of concatenating)              |
+| `{ combine: 'mix-power' }`                         | Mix to equal power (instead of concatenating)                    |
+| `{ combine: 'merge' }`                             | Merge multiple input files (instead of concatenating)            |
+| `{ combine: 'multiply' }` | Multiply samples of corresponding channels from all input files (instead of concatenating) |
+-->
 
 | Command(s)                                         | Functionality                                                    |
 |:---------------------------------------------------|:-----------------------------------------------------------------|
 | `{ buffer: BYTES }`                                | Set the size of all processing buffers (default 8192)            |
-| `{ combine: 'concatenate' }`                       | Concatenate all input files (default for sox, rec)               |
-| `{ combine: 'sequence' }`                          | Sequence all input files (default for play)                      |
-| `'-m'`, `{ m: true }`, `{ combine: 'mix' }`        | Mix multiple input files (instead of concatenating)              |
-| `{ combine: 'mix-power' }`                         | Mix to equal power (instead of concatenating)                    |
-| `'-M'`, `{ M: true }`, `{ combine: 'merge' }`      | Merge multiple input files (instead of concatenating)            |
-| `'-T'`, `{ T: true }`, `{ combine: 'multiply' }`   | Multiply samples of corresponding channels from all input files (instead of concatenating) |
-| `'-D'`, `{ D: true }`, `{ 'no-dither': true }`     | Don't dither automatically                                       |
+| `{ 'no-dither': true }`                            | Don't dither automatically                                       |
 | `{ 'effects-file': FILENAME }`                     | File containing effects and options                              |
-| `'-G'`, `{ G: true }`, `{ guard: true }`           | Use temporary files to guard against clipping                    |
-| `{ input-buffer: BYTES }`                          | Override the input buffer size (default: same as --buffer; 8192) |
-| `'--norm'`, `{ norm: true }`                       | Guard (see --guard) & normalise                                  |
-| `{ play-rate-arg: ARG }`                           | Default `rate` argument for auto-resample with `play'            |
-| `{ plot: 'gnuplot'|'octave' }`                     | Generate script to plot response of filter effect                |
-| `{ 'replay-gain': 'track'|'album'|'off' }`           | Default: 'off' (sox, rec), track (play)                          |
-| `'-R'`, `{ R: true }`                              | Use default random numbers (same on each run of SoX)             |
-| `'--single-threaded'`, `{ 'single-threaded': true }` | Disable parallel effects channels processing                     |
+| `{ guard: true }`                                  | Use temporary files to guard against clipping                    |
+| `{ 'input-buffer': BYTES }`                        | Override the input buffer size (default: same as --buffer; 8192) |
+| `{ norm: true }`                                   | Guard (see --guard) & normalise                                  |
+| `{ 'play-rate-arg': ARG }`                         | Default `rate` argument for auto-resample with 'play'            |
+| `{ plot: 'gnuplot' OR 'octave' }`                  | Generate script to plot response of filter effect                |
+| `{ 'replay-gain': 'track' OR 'album' OR 'off' }`   | Default: 'off' (sox, rec), track (play)                          |
+| `{ R: true }`                              | "Repeatable" mode. Uses default random numbers (same on each run of SoX) |
+| `{ 'single-threaded': true }`                      | Disable parallel effects channels processing                     |
 | `{ temp: DIRECTORY }`                              | Specify the directory to use for temporary files                 |
 
 ```js
@@ -125,25 +128,25 @@ sox({
 
 You can supply an array of strings/numbers, or an object that will be transformed into an array of strings/numbers using [hash-to-array][hta].
 
-| Input | Output | Command(s)                                           | Functionality                                             |
-|:-----:|:------:|:-----------------------------------------------------|:----------------------------------------------------------|
-|   ✓  |    X   | `{ v: FACTOR }`, `{ volume: FACTOR }`                | Input file volume adjustment factor (Floating point number between 0 and 1) |
-|   ✓  |    X   | `{ ignore-length: true }`                            | Ignore input file length given in header; read to EOF |
-|   ✓  |    ✓  | `{ t: FILETYPE }`, `{ type: FILETYPE }`              | Audio [file type](https://en.wikipedia.org/wiki/Audio_file_format). E.g. `'wav'`, `'ogg'`        |
-|   ✓  |    ✓  | `{ e: ENCODING }`, `{ encoding: ENCODING }`          | ENCODING can be `'signed-integer'`, `'unsigned-integer'`, `'floating-point'`, `'mu-law'`, `'a-law'`, `'ima-adpcm'`, `'ms-adpcm'`, or `'gsm-full-rate'` |
-|   ✓  |    ✓  | `'-b'`, `{ b: BITS }`, `{ bits: BITS }`              | Encoded sample size in bits, A.K.A. the [bit depth](https://en.wikipedia.org/wiki/Audio_bit_depth). E.g. `16`, `24`. (Not applicable to complex encodings such as MP3 or GSM.) |
-|   ✓  |    ✓  | `'-N'`, `{ N: true }`, `{ 'reverse-nibbles': true }` | Encoded nibble-order                                      |
-|   ✓  |    ✓  | `'-X'`, `{ X: true }`, `{ 'reverse-bits': true }`    | Encoded bit-order                                         |
-|   ✓  |    ✓  | `'-L'`, `{ endian: 'little' }`, `{ L: true }`        | Encoded byte-order: Little endian                         |
-|   ✓  |    ✓  | `'-B'`, `{ endian: 'big' }`, `{ B: true }`           | Encoded byte-order: Big endian                            |
-|   ✓  |    ✓  | `'-x'`, `{ endian: 'swap' }`, `{ x: true }`          | Encoded byte-order: swap means opposite to default        |
-|   ✓  |    ✓  | `{ c: CHANNELS }`, `{ channels: CHANNELS }`          | Number of [channels](https://en.wikipedia.org/wiki/Audio_channel) of audio data. E.g. `2` for stereo |
-|   ✓  |    ✓  | `'--no-glob'`, `{ 'no-glob': true }`                 | Don't `glob' wildcard match the following filename        |
-|   ✓  |    ✓  | `{ r: RATE }`, `{ rate: RATE }`                      | [Sample rate](https://en.wikipedia.org/wiki/Sampling_(signal_processing)#Sampling_rate) of audio. E.g. `44100`, `48000` |
-|   X   |    ✓  | `{ C: FACTOR }`, `{ compression: FACTOR }`           | Compression factor. See [SoX format docs](http://sox.sourceforge.net/soxformat.html) for more information. |
-|   X   |    ✓  | `{ 'add-comment': TEXT }`                            | Append output file comment                                |
-|   X   |    ✓  | `{ comment: TEXT }`                                  | Specify comment text for the output file                  |
-|   X   |    ✓  | `{ 'comment-file': FILENAME }`                       | File containing comment text for the output file          |
+| Input | Output | Command(s)                 | Functionality                                             |
+|:-----:|:------:|:---------------------------|:----------------------------------------------------------|
+|   ✓  |    X   | `{ volume: FACTOR }`        | Input file volume adjustment factor (Floating point number between 0 and 1) |
+|   ✓  |    X   | `{ 'ignore-length': true }` | Ignore input file length given in header; read to EOF     |
+|   ✓  |    ✓   | `{ type: FILETYPE }`        | Audio [file type](https://en.wikipedia.org/wiki/Audio_file_format). E.g. `'wav'`, `'ogg'`  |
+|   ✓  |    ✓  | `{ encoding: ENCODING }`     | ENCODING can be `'signed-integer'`, `'unsigned-integer'`, `'floating-point'`, `'mu-law'`, `'a-law'`, `'ima-adpcm'`, `'ms-adpcm'`, or `'gsm-full-rate'` |
+|   ✓  |    ✓  | `{ bits: BITS }`             | Encoded sample size in bits, A.K.A. the [bit depth](https://en.wikipedia.org/wiki/Audio_bit_depth). E.g. `16`, `24`. (Not applicable to complex encodings such as MP3 or GSM.) |
+|   ✓  |    ✓  | `{ 'reverse-nibbles': true }` | Encoded nibble-order                                      |
+|   ✓  |    ✓  | `{ 'reverse-bits': true }`    | Encoded bit-order                                         |
+|   ✓  |    ✓  | `{ endian: 'little' }`        | Encoded byte-order: Little endian                         |
+|   ✓  |    ✓  | `{ endian: 'big' }`           | Encoded byte-order: Big endian                            |
+|   ✓  |    ✓  | `{ endian: 'swap' }`          | Encoded byte-order: swap means opposite to default        |
+|   ✓  |    ✓  | `{ channels: CHANNELS }`      | Number of [channels](https://en.wikipedia.org/wiki/Audio_channel) of audio data. E.g. `2` for stereo |
+|   ✓  |    ✓  | `{ 'no-glob': true }`         | Don't 'glob' wildcard match the following filename        |
+|   ✓  |    ✓  | `{ rate: RATE }`              | [Sample rate](https://en.wikipedia.org/wiki/Sampling_(signal_processing)#Sampling_rate) of audio. E.g. `44100`, `48000` |
+|   X   |    ✓  | `{ compression: FACTOR }`    | Compression factor. See [SoX format docs](http://sox.sourceforge.net/soxformat.html) for more information. |
+|   X   |    ✓  | `{ 'add-comment': TEXT }`    | Append output file comment                                |
+|   X   |    ✓  | `{ comment: TEXT }`          | Specify comment text for the output file                  |
+|   X   |    ✓  | `{ 'comment-file': FILENAME }`| File containing comment text for the output file         |
 
 ```js
 sox({
